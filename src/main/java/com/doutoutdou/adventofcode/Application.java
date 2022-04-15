@@ -1,4 +1,4 @@
-package com.adventofcode._2021;
+package com.doutoutdou.adventofcode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

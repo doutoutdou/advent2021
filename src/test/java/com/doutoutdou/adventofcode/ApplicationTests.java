@@ -1,4 +1,4 @@
-package com.adventofcode._2021;
+package com.doutoutdou.adventofcode;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
