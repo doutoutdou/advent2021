@@ -25,7 +25,7 @@ class ExerciceOne {
                 pv = i;
             }
 
-            Assertions.assertEquals(1502, pv);
+            Assertions.assertEquals(1502, j);
         }
 
         @Test
