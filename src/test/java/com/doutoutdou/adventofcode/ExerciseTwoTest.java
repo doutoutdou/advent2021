@@ -1,43 +1,24 @@
 package com.doutoutdou.adventofcode;
 
-import java.io.File;
-import java.io.IOException;
+import com.doutoutdou.adventofcode.utils.ExerciceUtils;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import org.apache.commons.io.FileUtils;
-import org.assertj.core.util.Arrays;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-class ExerciceTwo {
-
-    List<String> loadFromFile() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("exercice2.txt").getFile());
-        try {
-            return FileUtils.readLines(file, "UTF-8");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-    }
+class ExerciseTwoTest {
 
     @Nested
-    @DisplayName("Tests pour la partie 1 de lexercice 2")
     class Part1 {
         @Test
         void version1() {
-            List<String> loadFromFile = loadFromFile();
-
+            List<String> loadFromFile = ExerciceUtils.loadFromFile("2");
 
             Map<String, Integer> collect1 = loadFromFile.stream().map((t) ->
-                            t.split(" ")
+                    t.split(" ")
             ).collect(Collectors.toMap(strings -> strings[0], strings -> Integer.valueOf(strings[1]), Integer::sum));
 
             Integer up = collect1.get("down") - collect1.get("up");
@@ -51,12 +32,10 @@ class ExerciceTwo {
     }
 
     @Nested
-    @DisplayName("Tests pour la partie 2 de lexercice 1")
     class Part2 {
         @Test
-        void version2() {
-            List<String> loadFromFile = loadFromFile();
-
+        void version1() {
+            List<String> loadFromFile = ExerciceUtils.loadFromFile("2");
 
             List<String[]> list = loadFromFile.stream().map((t) ->
                     t.split(" ")

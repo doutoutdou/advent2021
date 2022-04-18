@@ -1,92 +1,12 @@
 package com.doutoutdou.adventofcode;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-class ExerciceOne {
-
-    @Nested
-    @DisplayName("Tests pour la partie 1 de lexercice 1")
-    class Part1 {
-        @Test
-        void version1() {
-            List<Integer> integers = getInputList();
-
-            int j = 0;
-            int pv = integers.get(0);
-            for (int i : integers) {
-                if (i > pv) {
-                    j++;
-                }
-                pv = i;
-            }
-
-            Assertions.assertEquals(1502, j);
-        }
-
-        @Test
-        void version2() {
-            List<Integer> integers = getInputList();
-            final Counter counter = new Counter();
-            integers.stream().reduce(
-                    (integer, integer2) -> {
-                        if (integer < integer2) {
-                            counter.increment();
-                        }
-                        return integer2;
-                    });
-
-            Assertions.assertEquals(1502, counter.getI());
-        }
-
-       
-
-    }
-
-    static class Counter {
-        public int getI() {
-            return i;
-        }
-
-        private int i;
-
-        void increment() {
-            i++;
-        }
-    }
-
-    @Nested
-    @DisplayName("Tests pour la partie 2 de l'exercice 1")
-    class Part2 {
-        @Test
-        void version1() {
-            List<Integer> inputList = getInputList();
-
-            int firstValue;
-            int secondeValue;
-            int sum = 0;
-
-            for (int i = 0; i + 3 < inputList.size(); i++) {
-                // premiere value AAA
-                firstValue = inputList.get(i) + inputList.get(i + 1) +     inputList.get(i+2);
-                // seconde valeur BBB
-                secondeValue = inputList.get(i+1) + inputList.get(i+2)+                inputList.get(i+3);
-                if (secondeValue > firstValue) {
-                    sum++;
-                }
-            }
-
-            System.out.println(sum);
-            
-        }
-
-    }
+class ExerciseOneTest {
 
     private List<Integer> getInputList() {
         List<Integer> integers = List.of(150, 152, 155, 156, 157, 141, 124, 138, 143, 145, 144, 146, 148, 149, 148,
@@ -213,6 +133,80 @@ class ExerciceOne {
                 7612, 7616, 7615, 7616, 7605, 7607, 7627, 7648, 7667, 7670, 7679, 7680, 7685, 7695, 7705, 7725,
                 7751, 7757, 7739);
         return integers;
+    }
+
+    static class Counter {
+        private int i;
+
+        public int getI() {
+            return i;
+        }
+
+        void increment() {
+            i++;
+        }
+    }
+
+    @Nested
+    class Part1 {
+        @Test
+        void version1() {
+            List<Integer> integers = getInputList();
+
+            int j = 0;
+            int pv = integers.get(0);
+            for (int i : integers) {
+                if (i > pv) {
+                    j++;
+                }
+                pv = i;
+            }
+
+            Assertions.assertEquals(1502, j);
+        }
+
+        @Test
+        void version2() {
+            List<Integer> integers = getInputList();
+            final Counter counter = new Counter();
+            integers.stream().reduce(
+                    (integer, integer2) -> {
+                        if (integer < integer2) {
+                            counter.increment();
+                        }
+                        return integer2;
+                    });
+
+            Assertions.assertEquals(1502, counter.getI());
+        }
+
+
+    }
+
+    @Nested
+    class Part2 {
+        @Test
+        void version1() {
+            List<Integer> inputList = getInputList();
+
+            int firstValue;
+            int secondeValue;
+            int sum = 0;
+
+            for (int i = 0; i + 3 < inputList.size(); i++) {
+                // premiere value AAA
+                firstValue = inputList.get(i) + inputList.get(i + 1) + inputList.get(i + 2);
+                // seconde valeur BBB
+                secondeValue = inputList.get(i + 1) + inputList.get(i + 2) + inputList.get(i + 3);
+                if (secondeValue > firstValue) {
+                    sum++;
+                }
+            }
+
+            System.out.println(sum);
+
+        }
+
     }
 
 }
