@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,7 +29,7 @@ class ExerciceTwo {
     }
 
     @Nested
-    @DisplayName("Tests pour la partie 1 de lexercice 1")
+    @DisplayName("Tests pour la partie 1 de lexercice 2")
     class Part1 {
         @Test
         void version1() {
@@ -46,6 +47,46 @@ class ExerciceTwo {
             System.out.println(total);
         }
 
+
+    }
+
+    @Nested
+    @DisplayName("Tests pour la partie 2 de lexercice 1")
+    class Part2 {
+        @Test
+        void version2() {
+            List<String> loadFromFile = loadFromFile();
+
+
+            List<String[]> list = loadFromFile.stream().map((t) ->
+                    t.split(" ")
+            ).toList();
+
+            int forward = 0;
+            int aim = 0;
+            int depth = 0;
+
+            for (String[] e : list) {
+                String key = e[0];
+                int value = Integer.parseInt(e[1]);
+
+                if (Objects.equals(key, "forward")) {
+                    forward = forward + value;
+                    depth = aim * value + depth;
+                }
+                if (Objects.equals(key, "down")) {
+                    aim = aim + value;
+                }
+                if (Objects.equals(key, "up")) {
+                    aim = aim - value;
+                }
+
+            }
+
+            System.out.println(forward);
+            System.out.println(depth);
+            System.out.println(depth * forward);
+        }
 
     }
 
